@@ -212,10 +212,10 @@
       }
     });
     return accumulator;
-      //if no starting value
-        //accumulator = colllection [0]
-      // run iterator against it
-      // accumulator should be return value of previous iterator call
+    //if no starting value
+    //accumulator = colllection [0]
+    // run iterator against it
+    // accumulator should be return value of previous iterator call
   };
 
   // Determine if the array or object contains a given value (using `===`).
@@ -234,11 +234,32 @@
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
-  };
+    //reduce on collection pass in a function pass in boolean true and current value
+    return _.reduce(collection, function(allTrue, item) {
+      if (!iterator) {
+        return _.identity(item);
+      } else if (!iterator(item)) {
+        return false;
+      }
+      return allTrue;
+    }, true);
 
+  };
+    //each item in collection pass in colection and element
+      //if iterator(element)
+        //return true
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
   _.some = function(collection, iterator) {
+    //on every item in collection pass in iterator
+    // if everything is true
+  //return true
+    var iterator = iterator || _.identity;
+    return !(_.every(collection, function(value) {
+      if (!iterator(value)) {
+        return true;
+      }
+    }));
     // TIP: There's a very clever way to re-use every() here.
   };
 
